@@ -15,3 +15,4 @@ def log_execution(func):
         return result
 
     return wrapper
+

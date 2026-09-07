@@ -11,8 +11,8 @@ class NotificationSenderFactory:
             case "email":
                 return EmailSender("arunthamizhanda@gmail.com")
             case "sms":
-                return SMSSender(9845678903)
+                return SMSSender(9876543210)
             case "push":
-                return PushSender("wewf233en67")
+                return PushSender("")
             case _:
                 raise ValueError(f"Unsupported channel: {channel}")
