@@ -1,0 +1,14 @@
+[
+    {
+        "channel": "email",
+        "status": "success"
+    },
+    {
+        "channel": "sms",
+        "status": "failed"
+    },
+    {
+        "channel": "push",
+        "status": "success"
+    }
+]
