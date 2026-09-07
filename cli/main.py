@@ -7,6 +7,7 @@ class NotificationRecord(TypedDict):
     channel: str
     status: str
 
+
 def load_notifications(file_path: str) -> list[NotificationRecord]:
     with Path(file_path).open() as file:
         return json.load(file)
@@ -23,17 +24,16 @@ def main() -> None:
         )
 
     has_failure = any(
-        notification["status"] == "failed"
-        for notification in notifications
+        notification["status"] == "failed" for notification in notifications
     )
 
     all_successful = all(
-        notification["status"] == "success"
-        for notification in notifications
+        notification["status"] == "success" for notification in notifications
     )
 
     print(f"Has failure: {has_failure}")
     print(f"All successful: {all_successful}")
+
 
 if __name__ == "__main__":
     main()

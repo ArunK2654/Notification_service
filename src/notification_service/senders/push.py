@@ -1,5 +1,5 @@
-from notification_service.src.notification_service.services.domain import Notification
-from notification_service.src.notification_service.senders.base import NotificationSender
+from notification_service.senders.base import NotificationSender
+from notification_service.services.domain import Notification
 
 
 class PushSender(NotificationSender):

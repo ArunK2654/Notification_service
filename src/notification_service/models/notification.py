@@ -3,7 +3,8 @@ from datetime import datetime
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
-from notification_service.src.notification_service.database import Base
+from notification_service.database import Base
+
 
 class NotificationModel(Base):
     __tablename__ = "notification_model"

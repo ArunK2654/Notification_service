@@ -5,11 +5,8 @@ class KafkaProducer:
         key: str,
         value: str,
     ) -> None:
-        print(
-            f"Publishing to topic={topic}, "
-            f"key={key}, "
-            f"value={value}"
-        )
+        print(f"Publishing to topic={topic}, key={key}, value={value}")
+
 
 producer = KafkaProducer()
 

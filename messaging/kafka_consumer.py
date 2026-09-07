@@ -4,10 +4,7 @@ class KafkaConsumer:
         self.group_id = group_id
 
     def consume(self) -> None:
-        print(
-            f"Consuming from topic={self.topic}, "
-            f"group={self.group_id}"
-        )
+        print(f"Consuming from topic={self.topic}, group={self.group_id}")
 
 
 consumer = KafkaConsumer(

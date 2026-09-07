@@ -1,10 +1,12 @@
-from notification_service.core import NotificationError
-
-from notification_service.src.notification_service.services.domain import Notification
-from notification_service.src.notification_service.repositories.notification_repository import NotificationRepository
-from notification_service.src.notification_service.models.notification import NotificationModel
-from notification_service.src.notification_service.schemas.notification import NotificationRequest
-from notification_service.src.notification_service.senders.base import NotificationSender
+from notification_service.core.exceptions import NotificationError
+from notification_service.core.logging import log_execution
+from notification_service.models.notification import NotificationModel
+from notification_service.repositories.notification_repository import (
+    NotificationRepository,
+)
+from notification_service.schemas.notification import NotificationRequest
+from notification_service.senders.base import NotificationSender
+from notification_service.services.domain import Notification
 
 
 class NotificationService:
@@ -53,10 +55,3 @@ class NotificationService:
                 self.notification_repository.update_delivery(
                     delivery=delivery, status="FAILED", error_message=str(e)
                 )
-
-    def send_notification(self, notification: Notification) -> None:
-        for n in self.notification_senders:
-            try:
-                n.send(notification)
-            except NotificationError as e:
-                print(f"Notification failed: {e}")

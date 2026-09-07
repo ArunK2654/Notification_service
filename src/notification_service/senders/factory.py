@@ -1,9 +1,7 @@
-from notification_service.src.notification_service.senders.sms import SMSSender
-
-from notification_service.src.notification_service.senders.push import PushSender
-from notification_service.src.notification_service.senders.base import NotificationSender
-
-from notification_service.src.notification_service.senders.email import EmailSender
+from notification_service.senders.base import NotificationSender
+from notification_service.senders.email import EmailSender
+from notification_service.senders.push import PushSender
+from notification_service.senders.sms import SMSSender
 
 
 class NotificationSenderFactory:
@@ -18,4 +16,3 @@ class NotificationSenderFactory:
                 return PushSender("wewf233en67")
             case _:
                 raise ValueError(f"Unsupported channel: {channel}")
-

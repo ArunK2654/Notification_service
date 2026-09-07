@@ -1,6 +1,7 @@
 import time
 from functools import wraps
 
+
 def log_execution(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -10,7 +11,7 @@ def log_execution(func):
         result = func(*args, **kwargs)
 
         end = time.perf_counter()
-        print(f"{func.__name__} finished " f"in {end - start:.4f} seconds")
+        print(f"{func.__name__} finished in {end - start:.4f} seconds")
         return result
-    return wrapper
 
+    return wrapper

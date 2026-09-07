@@ -1,7 +1,9 @@
 from sqlalchemy.orm import Session
 
-from notification_service.src.notification_service.models.notification import NotificationModel, \
-    NotificationDeliveryModel
+from notification_service.models.notification import (
+    NotificationDeliveryModel,
+    NotificationModel,
+)
 
 
 class NotificationRepository:

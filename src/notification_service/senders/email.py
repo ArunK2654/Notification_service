@@ -4,9 +4,9 @@ from email.message import EmailMessage  # creates an email message object
 
 from dotenv import load_dotenv  # to load the .env file
 
-from notification_service.src.notification_service.services.domain import Notification
-from notification_service.src.notification_service.main import EmailDeliveryError
-from notification_service.src.notification_service.senders.base import NotificationSender
+from notification_service.core.exceptions import EmailDeliveryError
+from notification_service.senders.base import NotificationSender
+from notification_service.services.domain import Notification
 
 load_dotenv()
 
@@ -29,12 +29,9 @@ class EmailSender(NotificationSender):
         message.set_content(notification.message)
 
         try:
-
             with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
                 smtp.login(smtp_email, smtp_password)
                 smtp.send_message(message)
 
         except smtplib.SMTPException as exc:
-            raise EmailDeliveryError(
-                "Failed to send email"
-            ) from exc
+            raise EmailDeliveryError("Failed to send email") from exc
