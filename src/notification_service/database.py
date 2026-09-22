@@ -5,9 +5,11 @@ from fastapi import Depends
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
-engine = create_engine(
-    url="sqlite:///db_notification.db", connect_args={"check_same_thread": False}
-)
+from notification_service.core.config import settings
+
+database_url = settings.database_url
+
+engine = create_engine(url=database_url)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 
@@ -15,9 +17,7 @@ class Base(DeclarativeBase):
     pass
 
 
-def get_db() -> (
-    Generator[Session, None, None]
-):  # from collections.abc import Generator def get_db() -> Generator[Session, None, None]:
+def get_db() -> Generator[Session, None, None]:
     db = SessionLocal()
     try:
         yield db

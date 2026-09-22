@@ -1,18 +1,16 @@
+from notification_service.enums import ChannelEnum
 from notification_service.senders.base import NotificationSender
 from notification_service.senders.email import EmailSender
-from notification_service.senders.push import PushSender
 from notification_service.senders.sms import SMSSender
 
 
 class NotificationSenderFactory:
     @staticmethod
-    def create(channel: str) -> NotificationSender:
+    def create(channel: str, recipient: str) -> NotificationSender:
         match channel:
-            case "email":
-                return EmailSender("arunthamizhanda@gmail.com")
-            case "sms":
-                return SMSSender(9876543210)
-            case "push":
-                return PushSender("")
+            case ChannelEnum.EMAIL:
+                return EmailSender(recipient)
+            case ChannelEnum.SMS:
+                return SMSSender(recipient)
             case _:
                 raise ValueError(f"Unsupported channel: {channel}")

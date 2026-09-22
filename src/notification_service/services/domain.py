@@ -1,4 +1,9 @@
+"""Domain objects used by the application"""
+
+from dataclasses import dataclass
+
+
+@dataclass
 class Notification:
-    def __init__(self, subject: str, message: str):
-        self.subject = subject
-        self.message = message
+    subject: str
+    message: str
