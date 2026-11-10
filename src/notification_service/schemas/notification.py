@@ -13,7 +13,7 @@ class EmailChannelRequest(BaseModel):
 
 class SMSChannelRequest(BaseModel):
     channel: Literal[ChannelEnum.SMS]
-    recipient: str = Field(pattern=r"^\d{10}$")
+    recipient: str = Field(pattern=r"^(?:\+91)?[6-9]\d{9}$")
 
 
 NotificationChannelRequest = Annotated[
@@ -41,9 +41,9 @@ class NotificationResponse(BaseModel):
 
 
 class NotificationDetailResponse(BaseModel):
-    id: int
-    subject: str
-    message: str
+    id: int = Field(gt=0)
+    subject: str = Field(min_length=1, max_length=200)
+    message: str = Field(min_length=1, max_length=1000)
     status: NotificationStatusEnum
     created_at: datetime
 
